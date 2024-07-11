@@ -69,8 +69,7 @@
     <p>Once connected, you can start interacting with QueryAI by typing your queries in the chat input field. QueryAI will interpret your natural language queries, convert them into SQL queries, execute them against the database, and display the results.</p>
 
 <h2>Screenshots</h2>
-  <<img width="1440" alt="330312966-515ba623-ecb3-4592-bcb1-05354c6be8bb" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/a77388d5-6bf7-4041-ad9e-a5cb49a76522">
-<img width="1440" alt="330312894-9370dd0d-b9e7-4f34-831e-175cc0cf3b4f" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/0ef376ee-dab9-419f-8077-f3815135d1cf">
-<img width="1440" alt="330312722-6e31afaf-4ff8-4fda-bba8-a7fbe6f95b3c" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/eb879eff-24b5-4b15-9b31-1605313f1199">
-<img width="1440" alt="330312396-c559043f-9b02-4044-a4bc-7079ff73719b" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/4a5c2564-1a78-4248-bc8a-a913743a0106">
-
+  <img width="1440" alt="330312396-c559043f-9b02-4044-a4bc-7079ff73719b" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/048114e2-b016-4c3b-a436-eb4d62d9358d">
+<img width="1440" alt="330312722-6e31afaf-4ff8-4fda-bba8-a7fbe6f95b3c" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/218c47b3-1f83-4bf3-bc96-4422a88039ce">
+<img width="1440" alt="330312894-9370dd0d-b9e7-4f34-831e-175cc0cf3b4f" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/c1b2ec2c-1520-48d2-ae01-6301f17bf71f">
+<img width="1440" alt="330312966-515ba623-ecb3-4592-bcb1-05354c6be8bb" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/798615d7-a230-4ddf-a55c-7561a76b9978">
