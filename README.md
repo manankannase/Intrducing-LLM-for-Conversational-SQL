@@ -1,7 +1,7 @@
 # Intrducing-LLM-for-Conversational-SQL
 
 
-    <p>It is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.</p>
+    It is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.
 
  <h2>Features</h2>
     <ul>
