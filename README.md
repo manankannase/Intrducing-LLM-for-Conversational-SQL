@@ -1,6 +1,6 @@
 
 <h1>Intrducing-LLM-for-Conversational-SQL</h1>
-    <p>QueryAI is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.</p>
+    <p>It is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.</p>
 
 
  <h2>Features</h2>
