@@ -1,75 +1,56 @@
+# Conversational SQL
 
-<h1>Intrducing-LLM-for-Conversational-SQL</h1>
-    <p>It is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.</p>
+Secure natural-language analytics for MySQL. Ask questions in plain English; the application generates a read-only SQL query, validates it, executes it with a row limit, and explains the result.
 
+## Safety model
 
- <h2>Features</h2>
-    <ul>
-        <li>Natural language interface for querying MySQL databases</li>
-        <li>Seamless integration with Streamlit for a user-friendly interface</li>
-        <li>Support for conversation history to maintain context during interactions</li>
-    </ul>
-    
-  <h2>Getting Started</h2>
-    <p>To get started with QueryAI, follow these steps:</p>
+- Only one SQL statement is accepted.
+- Only `SELECT`-style queries are accepted.
+- Mutating operations such as `INSERT`, `UPDATE`, `DELETE`, `DROP`, and `ALTER` are rejected.
+- Queries without a limit receive `LIMIT 100`.
+- Connection failures and query failures are shown without exposing credentials or stack traces.
+- Use a database account with `SELECT` permissions only.
 
-  <h3>Prerequisites</h3>
-    <ul>
-        <li>Python 3.x installed on your system</li>
-        <li>MySQL installed and running</li>
-        <li>Required Python packages installed (specified in <code>requirements.txt</code>)</li>
-    </ul>
+## Run locally
 
-<h3>Dataset</h3>
-<p>The project can be applied to any SQL database containing tables and records that you want to query using natural language.</p>
+1. Create an environment and install dependencies:
 
-<h2>How it Works</h2>
-<p>The LLM project leverages natural language processing techniques to convert user input into SQL queries. Here's how it works:    
-<ol>
-        <li><strong>User Input:</strong> Enter a natural language prompt (e.g., "Show me all customers from New York").</li>
-        <li><strong>NLP Processing:</strong> Use NLP libraries to parse and understand the user query.</li>
-        <li><strong>SQL Query Generation:</strong> Convert the parsed input into SQL queries that can be executed on the database.</li>
-        <li><strong>Database Interaction:</strong> Execute the generated SQL query on the connected SQL server.</li>
-        <li><strong>Response:</strong> Display the results back to the user in a readable format.</li><h1>Intrducing-LLM-for-Conversational-SQL</h1>
-    <p>QueryAI is a simple chat application integrated with MySQL for querying databases using natural language. It provides a conversational interface for interacting with your MySQL database, enabling users to ask questions and receive SQL-based responses.</p>
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
 
+2. Copy `.env.example` to `.env` and set `GROQ_API_KEY` plus database settings. Never commit `.env`.
 
- <h2>Features</h2>
-    <ul>
-        <li>Natural language interface for querying MySQL databases</li>
-        <li>Seamless integration with Streamlit for a user-friendly interface</li>
-        <li>Support for conversation history to maintain context during interactions</li>
-    </ul>
-    
-  <h2>Getting Started</h2>
-    <p>To get started with QueryAI, follow these steps:</p>
+3. Start the application:
 
-  <h3>Prerequisites</h3>
-    <ul>
-        <li>Python 3.x installed on your system</li>
-        <li>MySQL installed and running</li>
-        <li>Required Python packages installed (specified in <code>requirements.txt</code>)</li>
-    </ul>
+   ```bash
+   streamlit run app.py
+   ```
 
-<h3>Dataset</h3>
-<p>The project can be applied to any SQL database containing tables and records that you want to query using natural language.</p>
+4. Run tests:
 
-</ol>
+   ```bash
+   pytest -q
+   ```
 
-  <h2>Usage</h2>
-    <p>Set up your MySQL database configuration by modifying the settings in the sidebar of the application:</p>
-    <ul>
-        <li>Host</li>
-        <li>Port</li>
-        <li>User</li>
-        <li>Password</li>
-        <li>Database</li>
-    </ul>
-    <p>Click on the "Connect" button to establish a connection to the database.</p>
-    <p>Once connected, you can start interacting with QueryAI by typing your queries in the chat input field. QueryAI will interpret your natural language queries, convert them into SQL queries, execute them against the database, and display the results.</p>
+## Configuration
 
-<h2>Screenshots</h2>
-  <img width="1440" alt="330312396-c559043f-9b02-4044-a4bc-7079ff73719b" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/048114e2-b016-4c3b-a436-eb4d62d9358d">
-<img width="1440" alt="330312722-6e31afaf-4ff8-4fda-bba8-a7fbe6f95b3c" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/218c47b3-1f83-4bf3-bc96-4422a88039ce">
-<img width="1440" alt="330312894-9370dd0d-b9e7-4f34-831e-175cc0cf3b4f" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/c1b2ec2c-1520-48d2-ae01-6301f17bf71f">
-<img width="1440" alt="330312966-515ba623-ecb3-4592-bcb1-05354c6be8bb" src="https://github.com/manankannase/Intrducing-LLM-for-Conversational-SQL/assets/154491445/798615d7-a230-4ddf-a55c-7561a76b9978">
+| Variable | Purpose |
+| --- | --- |
+| `GROQ_API_KEY` | LLM provider key |
+| `GROQ_MODEL` | Groq model name |
+| `DB_HOST` | MySQL host |
+| `DB_PORT` | MySQL port |
+| `DB_USER` | Read-only MySQL user |
+| `DB_PASSWORD` | Local secret; do not commit |
+| `DB_NAME` | Database name |
+
+## Architecture
+
+`app.py` owns the UI and orchestration. `query_guard.py` is the policy boundary between model output and the database. The guard parses generated SQL with SQLGlot before execution, making the safety rule independently testable.
+
+## Limitations
+
+This is a local Streamlit application. A production deployment should add authentication, per-user database permissions, audit logging, rate limits, query cost checks, and an API layer.
