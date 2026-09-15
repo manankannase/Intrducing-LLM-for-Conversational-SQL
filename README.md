@@ -49,7 +49,7 @@ Secure natural-language analytics for MySQL. Ask questions in plain English; the
 
 ## Architecture
 
-`app.py` owns the UI and orchestration. `query_guard.py` is the policy boundary between model output and the database. The guard parses generated SQL with SQLGlot before execution, making the safety rule independently testable.
+`app.py` owns the Streamlit UI. `core.py` contains the Groq HTTP client, MySQL access, schema loading, and query workflow. `query_guard.py` is the policy boundary between model output and the database. The application avoids heavy LLM frameworks, reducing dependency conflicts and keeping the execution path inspectable.
 
 ## Limitations
 
